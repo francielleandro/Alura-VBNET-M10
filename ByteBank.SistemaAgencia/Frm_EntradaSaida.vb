@@ -15,18 +15,17 @@ Public Class Frm_EntradaSaida
         TextBox2.Text = ""
 
         Dim EnderecoDoArquivo As String = "Tempo.txt"
-
-        Dim FluxoDoArquivo As New FileStream(EnderecoDoArquivo, FileMode.Open)
-
-        Dim Buffer = New Byte(1024) {} ' 1Kbyte
-
-        Dim NumeroBytesLidos As Integer = -1
-
-        While NumeroBytesLidos <> 0
-            NumeroBytesLidos = FluxoDoArquivo.Read(Buffer, 0, 1024)
-            TextBox1.AppendText(EscreverBuffer(Buffer))
-            TextBox2.AppendText(EscreveBufferUTF(Buffer))
-        End While
+        Using FluxoDoArquivo As New FileStream(EnderecoDoArquivo, FileMode.Open)
+            TextBox1.Text = ""
+            TextBox2.Text = ""
+            Dim Buffer = New Byte(1024) {} ' 1Kbyte
+            Dim NumeroBytesLidos As Integer = -1
+            While NumeroBytesLidos <> 0
+                NumeroBytesLidos = FluxoDoArquivo.Read(Buffer, 0, 1024)
+                TextBox1.AppendText(EscreverBuffer(Buffer))
+                TextBox2.AppendText(EscreveBufferUTF(Buffer))
+            End While
+        End Using
     End Sub
 
     Function EscreverBuffer(Buffer As Byte()) As String
@@ -52,4 +51,19 @@ Public Class Frm_EntradaSaida
         Return vRetorno
 
     End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Dim EnderecoDoArquivo As String = "Tempo.txt"
+        TextBox2.Text = ""
+        Using FluxoDoArquivo As New FileStream(EnderecoDoArquivo, FileMode.Open)
+            Using Leitor = New StreamReader(FluxoDoArquivo)
+                While Not (Leitor.EndOfStream)
+                    Dim vLinha As String = Leitor.ReadLine()
+                    TextBox2.AppendText(vLinha + vbCrLf)
+                End While
+            End Using
+        End Using
+
+    End Sub
 End Class
