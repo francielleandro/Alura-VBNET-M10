@@ -1,0 +1,47 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ByteBank.Bibliotecas
+</name>
+</assembly>
+<members>
+<member name="T:ByteBank.Bibliotecas.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:ByteBank.Bibliotecas.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:ByteBank.Bibliotecas.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente">
+ <summary>
+ Esta classe representa uma conta corrente aberta pelo cliente do banco ByteBank
+ </summary>
+</member>
+<member name="M:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.#ctor(System.Int32,System.Int32)">
+ <summary>
+ Este construtor instancia uma nova classe contacorrente, Devemos passar como parametro o número da agencia e número da conta
+ </summary>
+ <param name="CodigoAgencia">Representa o código da agencia expresso em número inteiro. Este valor deve ser maior que zero. O parametro será atribuido a propriedade <see cref="P:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.agencia"/></param>
+ <param name="NumeroConta">Representa o código da conta corrente expresso em número inteiro. Este valor deve ser maior que zero. O parametro será atribuido a propriedade <see cref="P:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.numero"/></param>
+</member>
+<member name="M:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.Sacar(System.Double,System.String)">
+ <summary>
+ Representa a ação de sacar valores do saldo da conta corrente. 
+ </summary>
+ <exception cref="T:System.ArgumentException">Esta exceção irá aconetcer quando o <paramref name="ValorSacado"/> for menor que zero.</exception> 
+ <exception cref="T:ByteBank.Bibliotecas.Classes.Clientes.ValorSacadoMenorSaldoException">Esta exceção irá acontecer se o vaor de <see cref="F:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.m_saldo"/> for menor que o <paramref name="ValorSacado"/>. </exception>
+ <param name="ValorSacado">Valor a ser sacado da conta e será atualizado na propriedade <see cref="F:ByteBank.Bibliotecas.Classes.Clientes.ContaCorrente.m_saldo"/>. É um integer</param>
+ <param name="ValorLabel">Valor que representa o tipo de mensagem de alerta que deverá ser exibida ao usuário. É um string.</param>
+</member>
+</members>
+</doc>
