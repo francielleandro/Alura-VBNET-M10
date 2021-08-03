@@ -113,6 +113,12 @@
     <Compile Include="Frm_ContasCorrentesListas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Frm_EntradaSaida.Designer.vb">
+      <DependentUpon>Frm_EntradaSaida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_EntradaSaida.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Frm_ManutencaoCCListView.Designer.vb">
       <DependentUpon>Frm_ManutencaoCCListView.vb</DependentUpon>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_ContasCorrentesListas.resx">
       <DependentUpon>Frm_ContasCorrentesListas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_EntradaSaida.resx">
+      <DependentUpon>Frm_EntradaSaida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_ManutencaoCCListView.resx">
       <DependentUpon>Frm_ManutencaoCCListView.vb</DependentUpon>
