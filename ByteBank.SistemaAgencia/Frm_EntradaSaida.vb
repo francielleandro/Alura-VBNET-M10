@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
+Imports ByteBank.Bibliotecas.Classes.Clientes
 Public Class Frm_EntradaSaida
     Public Sub New()
 
@@ -60,10 +61,47 @@ Public Class Frm_EntradaSaida
             Using Leitor = New StreamReader(FluxoDoArquivo)
                 While Not (Leitor.EndOfStream)
                     Dim vLinha As String = Leitor.ReadLine()
-                    TextBox2.AppendText(vLinha + vbCrLf)
+                    Dim CC As ContaCorrente = CriarContaCorrente(vLinha)
+                    TextBox2.AppendText(CC.ToString + vbCrLf)
                 End While
             End Using
         End Using
 
+    End Sub
+
+    Function CriarContaCorrente(Linha As String) As ContaCorrente
+
+        Dim VetorLinha() As String = Linha.Split(";")
+        Dim Cliente As New Cliente()
+        Cliente.cpf = VetorLinha(3)
+        Cliente.nome = VetorLinha(4)
+
+        Dim CC As New ContaCorrente(VetorLinha(0), VetorLinha(1))
+        CC.titular = Cliente
+        Dim SaldoConvertido As Double = Double.Parse(VetorLinha(2))
+        CC.Depositar(SaldoConvertido - 100)
+
+        Return CC
+
+    End Function
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim CaminhoNovoArquivo As String = "ContasExternas.csv"
+        Using FluxoDoArquivo As New FileStream(CaminhoNovoArquivo, FileMode.Create)
+            Dim ContaString As String = "456;78945;4785,9;221122323;Gustavo Santos"
+            Dim UTF As New UTF8Encoding()
+            Dim Bytes = UTF.GetBytes(ContaString)
+            FluxoDoArquivo.Write(Bytes, 0, Bytes.Length)
+        End Using
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim CaminhoNovoArquivo As String = "ContasExternas.csv"
+        Using FluxoDoArquivo As New FileStream(CaminhoNovoArquivo, FileMode.Create)
+            Using Escritor = New StreamWriter(FluxoDoArquivo, Encoding.UTF8)
+                Dim ContaString As String = "456;78945;4785,9;221122323;José da Silva"
+                Escritor.Write(ContaString)
+            End Using
+        End Using
     End Sub
 End Class
