@@ -25,13 +25,14 @@ Partial Class Frm_ManutencaoCCListView
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frm_ManutencaoCCListView))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NovoToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.Grp_Lista = New System.Windows.Forms.GroupBox()
-        Me.Grp_CriterioOrdenacao = New System.Windows.Forms.GroupBox()
-        Me.Lvw_Contas = New System.Windows.Forms.ListView()
-        Me.Rb_Saldo = New System.Windows.Forms.RadioButton()
-        Me.Rb_Nome = New System.Windows.Forms.RadioButton()
-        Me.Rb_Conta = New System.Windows.Forms.RadioButton()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.Grp_Lista = New System.Windows.Forms.GroupBox()
+        Me.Lvw_Contas = New System.Windows.Forms.ListView()
+        Me.Grp_CriterioOrdenacao = New System.Windows.Forms.GroupBox()
+        Me.Rb_Conta = New System.Windows.Forms.RadioButton()
+        Me.Rb_Nome = New System.Windows.Forms.RadioButton()
+        Me.Rb_Saldo = New System.Windows.Forms.RadioButton()
+        Me.ToolSaveButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.Grp_Lista.SuspendLayout()
         Me.Grp_CriterioOrdenacao.SuspendLayout()
@@ -39,7 +40,7 @@ Partial Class Frm_ManutencaoCCListView
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripButton, Me.ToolStripButton1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NovoToolStripButton, Me.ToolStripButton1, Me.ToolSaveButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
@@ -55,58 +56,45 @@ Partial Class Frm_ManutencaoCCListView
         Me.NovoToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.NovoToolStripButton.Text = "&Novo"
         '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
+        '
         'Grp_Lista
         '
         Me.Grp_Lista.Controls.Add(Me.Lvw_Contas)
         Me.Grp_Lista.Location = New System.Drawing.Point(13, 45)
         Me.Grp_Lista.Name = "Grp_Lista"
-        Me.Grp_Lista.Size = New System.Drawing.Size(200, 100)
+        Me.Grp_Lista.Size = New System.Drawing.Size(451, 231)
         Me.Grp_Lista.TabIndex = 1
         Me.Grp_Lista.TabStop = False
         Me.Grp_Lista.Text = "GroupBox1"
-        '
-        'Grp_CriterioOrdenacao
-        '
-        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Conta)
-        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Nome)
-        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Saldo)
-        Me.Grp_CriterioOrdenacao.Location = New System.Drawing.Point(13, 151)
-        Me.Grp_CriterioOrdenacao.Name = "Grp_CriterioOrdenacao"
-        Me.Grp_CriterioOrdenacao.Size = New System.Drawing.Size(200, 100)
-        Me.Grp_CriterioOrdenacao.TabIndex = 2
-        Me.Grp_CriterioOrdenacao.TabStop = False
-        Me.Grp_CriterioOrdenacao.Text = "GroupBox2"
         '
         'Lvw_Contas
         '
         Me.Lvw_Contas.HideSelection = False
         Me.Lvw_Contas.Location = New System.Drawing.Point(7, 20)
         Me.Lvw_Contas.Name = "Lvw_Contas"
-        Me.Lvw_Contas.Size = New System.Drawing.Size(126, 74)
+        Me.Lvw_Contas.Size = New System.Drawing.Size(438, 205)
         Me.Lvw_Contas.TabIndex = 0
         Me.Lvw_Contas.UseCompatibleStateImageBehavior = False
         '
-        'Rb_Saldo
+        'Grp_CriterioOrdenacao
         '
-        Me.Rb_Saldo.AutoSize = True
-        Me.Rb_Saldo.Location = New System.Drawing.Point(16, 20)
-        Me.Rb_Saldo.Name = "Rb_Saldo"
-        Me.Rb_Saldo.Size = New System.Drawing.Size(90, 17)
-        Me.Rb_Saldo.TabIndex = 0
-        Me.Rb_Saldo.TabStop = True
-        Me.Rb_Saldo.Text = "RadioButton1"
-        Me.Rb_Saldo.UseVisualStyleBackColor = True
-        '
-        'Rb_Nome
-        '
-        Me.Rb_Nome.AutoSize = True
-        Me.Rb_Nome.Location = New System.Drawing.Point(16, 43)
-        Me.Rb_Nome.Name = "Rb_Nome"
-        Me.Rb_Nome.Size = New System.Drawing.Size(90, 17)
-        Me.Rb_Nome.TabIndex = 1
-        Me.Rb_Nome.TabStop = True
-        Me.Rb_Nome.Text = "RadioButton2"
-        Me.Rb_Nome.UseVisualStyleBackColor = True
+        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Conta)
+        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Nome)
+        Me.Grp_CriterioOrdenacao.Controls.Add(Me.Rb_Saldo)
+        Me.Grp_CriterioOrdenacao.Location = New System.Drawing.Point(12, 282)
+        Me.Grp_CriterioOrdenacao.Name = "Grp_CriterioOrdenacao"
+        Me.Grp_CriterioOrdenacao.Size = New System.Drawing.Size(451, 100)
+        Me.Grp_CriterioOrdenacao.TabIndex = 2
+        Me.Grp_CriterioOrdenacao.TabStop = False
+        Me.Grp_CriterioOrdenacao.Text = "GroupBox2"
         '
         'Rb_Conta
         '
@@ -119,14 +107,36 @@ Partial Class Frm_ManutencaoCCListView
         Me.Rb_Conta.Text = "RadioButton3"
         Me.Rb_Conta.UseVisualStyleBackColor = True
         '
-        'ToolStripButton1
+        'Rb_Nome
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.Rb_Nome.AutoSize = True
+        Me.Rb_Nome.Location = New System.Drawing.Point(16, 43)
+        Me.Rb_Nome.Name = "Rb_Nome"
+        Me.Rb_Nome.Size = New System.Drawing.Size(90, 17)
+        Me.Rb_Nome.TabIndex = 1
+        Me.Rb_Nome.TabStop = True
+        Me.Rb_Nome.Text = "RadioButton2"
+        Me.Rb_Nome.UseVisualStyleBackColor = True
+        '
+        'Rb_Saldo
+        '
+        Me.Rb_Saldo.AutoSize = True
+        Me.Rb_Saldo.Location = New System.Drawing.Point(16, 20)
+        Me.Rb_Saldo.Name = "Rb_Saldo"
+        Me.Rb_Saldo.Size = New System.Drawing.Size(90, 17)
+        Me.Rb_Saldo.TabIndex = 0
+        Me.Rb_Saldo.TabStop = True
+        Me.Rb_Saldo.Text = "RadioButton1"
+        Me.Rb_Saldo.UseVisualStyleBackColor = True
+        '
+        'ToolSaveButton
+        '
+        Me.ToolSaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolSaveButton.Image = CType(resources.GetObject("ToolSaveButton.Image"), System.Drawing.Image)
+        Me.ToolSaveButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolSaveButton.Name = "ToolSaveButton"
+        Me.ToolSaveButton.Size = New System.Drawing.Size(23, 22)
+        Me.ToolSaveButton.Text = "Salvar"
         '
         'Frm_ManutencaoCCListView
         '
@@ -157,4 +167,5 @@ Partial Class Frm_ManutencaoCCListView
     Friend WithEvents Rb_Conta As RadioButton
     Friend WithEvents Rb_Nome As RadioButton
     Friend WithEvents Rb_Saldo As RadioButton
+    Friend WithEvents ToolSaveButton As ToolStripButton
 End Class

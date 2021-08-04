@@ -1,4 +1,5 @@
 ﻿Imports ByteBank.Bibliotecas.Classes.Clientes
+Imports System.IO
 Public Class Frm_ManutencaoCCListView
     Dim ListaContas As New List(Of ContaCorrente)
 
@@ -22,12 +23,25 @@ Public Class Frm_ManutencaoCCListView
 
     Sub InicializacaoContas()
         ' Previamente configuramos algumas contas
-        ListaContas.Add(New ContaCorrente(277, 144323, "João da Silva"))
-        ListaContas.Add(New ContaCorrente(277, 155532, "Pedro Alcantara"))
-        ListaContas.Add(New ContaCorrente(277, 233224, "Julia Mattos"))
-        ListaContas.Add(New ContaCorrente(277, 983323, "Cláudia Organa"))
-        ListaContas.Add(New ContaCorrente(277, 788233, "José Firmino"))
-        ListaContas.Add(New ContaCorrente(277, 322352, "Julio de Castilho"))
+        'ListaContas.Add(New ContaCorrente(277, 144323, "João da Silva"))
+        'ListaContas.Add(New ContaCorrente(277, 155532, "Pedro Alcantara"))
+        'ListaContas.Add(New ContaCorrente(277, 233224, "Julia Mattos"))
+        'ListaContas.Add(New ContaCorrente(277, 983323, "Cláudia Organa"))
+        'ListaContas.Add(New ContaCorrente(277, 788233, "José Firmino"))
+        'ListaContas.Add(New ContaCorrente(277, 322352, "Julio de Castilho"))
+
+        Dim NomeArquivo As String = "ListaContasCorrentes.csv"
+        Using Fs As New FileStream(NomeArquivo, FileMode.Open)
+            Using Leitura As New StreamReader(Fs)
+                While Not Leitura.EndOfStream
+                    Dim Linha As String = Leitura.ReadLine()
+                    Dim vetorLinha As String() = Linha.Split(";")
+                    Dim cc As New ContaCorrente(Val(vetorLinha(0)), Val(vetorLinha(1)), vetorLinha(2))
+                    cc.Depositar(Val(vetorLinha(3)) - 100)
+                    ListaContas.Add(cc)
+                End While
+            End Using
+        End Using
     End Sub
 
     Sub FormatarListView()
@@ -137,5 +151,23 @@ Public Class Frm_ManutencaoCCListView
 
         AtualizarListView()
 
+    End Sub
+
+    Private Sub ToolSaveButton_Click(sender As Object, e As EventArgs) Handles ToolSaveButton.Click
+        Dim NomeArquivo As String = "ListaContasCorrentes.csv"
+        Using Fs As New FileStream(NomeArquivo, FileMode.Create)
+            Using Escrita As New StreamWriter(Fs)
+                For I As Integer = 0 To ListaContas.Count - 1
+                    Dim Linha As String = ""
+                    Linha += ListaContas(I).agencia.ToString + ";"
+                    Linha += ListaContas(I).numero.ToString + ";"
+                    Linha += ListaContas(I).titular.nome + ";"
+                    Linha += ListaContas(I).saldo.ToString
+                    Escrita.WriteLine(Linha)
+                Next
+            End Using
+        End Using
+
+        MsgBox("Dados de conta correntes salvos com sucesso.")
     End Sub
 End Class
