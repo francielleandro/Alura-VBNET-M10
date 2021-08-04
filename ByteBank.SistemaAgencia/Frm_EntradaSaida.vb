@@ -104,4 +104,50 @@ Public Class Frm_EntradaSaida
             End Using
         End Using
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim CaminhoNovoArquivo As String = "Teste.txt"
+        Using FluxoDoArquivo As New FileStream(CaminhoNovoArquivo, FileMode.Create)
+            Using Escritor = New StreamWriter(FluxoDoArquivo, Encoding.UTF8)
+                For I As Integer = 0 To 100000
+                    Dim ContaString As String = "Linha " + I.ToString
+                    Escritor.WriteLine(ContaString)
+                    Escritor.Flush()
+                    MsgBox("Escrevi a linha: " + ContaString)
+                Next
+            End Using
+        End Using
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim CaminhoNovoArquivo As String = "ContaCorrenteBinaria.txt"
+
+        Using FluxoDoArquivo As New FileStream(CaminhoNovoArquivo, FileMode.Create)
+            Using Escritor = New BinaryWriter(FluxoDoArquivo)
+                Dim agencia As Integer = 234
+                Dim Conta As Integer = 122221
+                Dim Saldo As Double = 4323.23
+                Dim CPF As String = "1222211122"
+                Dim Nome As String = "João dqa Silva"
+
+                Escritor.Write(agencia)
+                Escritor.Write(Conta)
+                Escritor.Write(Saldo)
+                Escritor.Write(CPF)
+                Escritor.Write(Nome)
+            End Using
+        End Using
+
+        Using FluxoDoArquivo As New FileStream(CaminhoNovoArquivo, FileMode.Open)
+            Using Escritor = New BinaryReader(FluxoDoArquivo)
+                Dim agencia As Integer = Escritor.ReadInt32()
+                Dim Conta As Integer = Escritor.ReadInt32()
+                Dim Saldo As Double = Escritor.ReadDouble
+                Dim CPF As String = Escritor.ReadString
+                Dim Nome As String = Escritor.ReadString
+
+                MsgBox($"Agencia: {agencia}, Conta:{Conta}, Saldo:{Saldo}, CPF:{CPF}, Nome:{Nome}")
+            End Using
+        End Using
+    End Sub
 End Class
